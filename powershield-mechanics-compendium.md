@@ -2,6 +2,8 @@
 powershield mechanics compendium (v1 from 20 March 2025)
 ========================================================
 
+thanks to: the work of kadano, taukhan, alexs puff stuff, schmooblidon, practicaltas, deep blue c
+
 The two basic ways to input a shield
 ------------------------------------
 

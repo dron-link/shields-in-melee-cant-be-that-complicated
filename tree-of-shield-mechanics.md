@@ -1,18 +1,26 @@
 
-The Tree of Shield Mechanics (v1.1.0 from 27 March 2025)
+The Tree of Shield Mechanics (v1.1.1 from 28 March 2025)
 ========================================================
 
-###### `  In Memory Of: Hax$  `
+`  In Memory Of: Hax$  `
 
 ##### Thanks
 
-Thanks: PracticalTAS, Deep Blue C
+Deep Blue C.
 
-Extended thanks for the work of tauKhan, Kadano, Magus420, @alexspuffstuff, schmooblidon, PracticalTAS, Deep Blue C, B&D Games, and the SmashWiki contributors
+PracticalTAS
+
+##### Credits
+
+Thanks for the freely-available work of: tauKhan, Kadano, Magus420, @alexspuffstuff, schmooblidon, PracticalTAS, B&D Games, and the SmashWiki contributors
+
+Writer: dron-link
+
+Contributions: PracticalTAS, Deep Blue C.
 
 ##### How reliable is the information contained here
 
-My original input is as reliable as simple observation is, in TM-CE simple labbed scenarios; the rest of the information contained here was sourced from the work of experts in the field, or at least the fraction that I managed to access during my efforts of putting together this document.
+My original input is based on what I gleaned from simple frame-by-frame planned interactions in TrainingMode-CommunityEdition's Training Lab; the rest of the information contained here was sourced from the work of experts in the field; the fraction that I managed to find while putting together this document. I'm privy of the niche research carried by them, and you may find mistakes and inconsistency in this content because my research procedure isn't as polished as theirs.
 
 None of the following information was gathered with Yoshi's unique shield in mind.
 
@@ -20,21 +28,21 @@ Table of contents
 -----------------
 
 - [Table of Contents](#table-of-contents)
-- [The basic way(s) to input a shield](#the-basic-way-s--to-input-a-shield)
-- [In-game: starting up the shield](#in-game--starting-up-the-shield)
+- [The basic way(s) to input a shield](#the-basic-ways-to-input-a-shield)
+- [[In-game: starting up the shield](#in-game--starting-up-the-shield)](#in-game-starting-up-the-shield)
 - [Buffering A](#buffering-a)
     - [Two ways to buffer A](#two-ways-to-buffer-a)
 - [Elements of shield](#elements-of-shield)
-- [What does shield strength do, upon hit](#what-does-shield-strength-do--upon-hit)
+- [What does shield strength do, upon hit](#what-does-shield-strength-do-upon-hit)
 - [Shield strength number](#shield-strength-number)
 - [Input of the shield strength](#input-of-the-shield-strength)
     - [Strength input conflict-solving](#strength-input-conflict-solving)
 - [Initial strength of the shield](#initial-strength-of-the-shield)
 - [Animations and their associated state](#animations-and-their-associated-state)
-- [How to get the GuardOn/_ animation on the first frame of shielding](#how-to-get-the--guardon------animation-on-the-first-frame-of-shielding)
-- [How to get the GuardReflect/_ animation on the first frame of shielding](#how-to-get-the--guardreflect------animation-on-the-first-frame-of-shielding)
+- [How to get the `GuardOn`/`` animation on the first frame of shielding](#how-to-get-the-guardon--animation-on-the-first-frame-of-shielding)
+- [How to get the `GuardReflect`/` ` animation on the first frame of shielding](#how-to-get-the-guardreflect--animation-on-the-first-frame-of-shielding)
 - [Changing the shield strength](#changing-the-shield-strength)
-- [The GuardSetOff/GuardDamage animation](#the--guardsetoff---guarddamage--animation)
+- [The `GuardSetOff`/`GuardDamage` animation](#the-guardsetoffguarddamage-animation)
 - [Powershield effect in the physical shield bubble hitbox](#powershield-effect-in-the-physical-shield-bubble-hitbox)
     - [Powershield counter](#powershield-counter)
 - [Projectile on the physical shield bubble hitbox](#projectile-on-the-physical-shield-bubble-hitbox)
@@ -43,26 +51,24 @@ Table of contents
 - [Autoshield](#autoshield)
   	- [Autoshield counter](#autoshield-counter)
 - [Autorelease](#autorelease)
-- [Inputting the `GuardOff`/`GuardOff` animation](#inputting-the--guardoff---guardoff--animation)
+- [Inputting the `GuardOff`/`GuardOff` animation](#inputting-the-guardoffguardoff-animation)
     - [Without autorelease](#without-autorelease)
     - [With autorelease](#with-autorelease)
 - [Powershield cancel](#powershield-cancel)
     - [Powershield cancel counter](#powershield-cancel-counter)
 - [Animation timelines](#animation-timelines)
     - [Shield startup](#shield-startup)
-    - [GuardOn/\_](#-guardon-----)
-    - [GuardReflect/\_](#-guardreflect-----)
-    - [GuardSetOff/GuardDamage](#-guardsetoff---guarddamage-)
-    - [Guard/_ after the complete shield startup animation](#-guard------after-the-complete-shield-startup-animation)
-    - [Guard/_ after shieldstun](#-guard------after-shieldstun)
-    - [GuardOff/GuardOff](#-guardoff---guardoff-)
-- [APPENDIX](#appendix)
+    - [`GuardOn`/` `](#guardon-)
+    - [`GuardReflect`/` `](#guardreflect-)
+    - [`GuardSetOff`/`GuardDamage`](#guardsetoffguarddamage)
+    - [`Guard`/`_` after the complete shield startup animation](#guard--after-the-complete-shield-startup-animation)
+    - [`Guard`/`_` after shieldstun](#guard--after-shieldstun)
+    - [`GuardOff`/`GuardOff`](#guardoffguardoff)
+- [Appendix](#appendix)
     - [Appendix A - Types of inputs by buffer](#appendix-a---types-of-inputs-by-buffer)
     - [Appendix B - Frame flowchart](#appendix-b---frame-flowchart)
 - [Work in Progress](#work-in-progress)
-- [References used, Additional reading](#references-used--additional-reading)
-
-<small><i>Note: <a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+- [References used, Additional reading](#references-used-additional-reading)
 
 The basic way(s) to input a shield
 ----------------------------------
@@ -87,16 +93,18 @@ There are ways you are prevented from starting up your shield. Not only there ar
 
 List of actions that involve inputting shield but have priority over actually starting up the shield:
 
+- Grab; if you input A exactly in the frame you intended to start up the shield, you grab instead.
 - Spotdodge; in a Wait state, tap or buffer<sub>(timed + hold)</sub> control stick down, while inputting shield.
 - Roll forward; once you begin the dash-forward animation, you cancel your dash into roll-forward by timing shield within frames 2 and 3 of the dash animation. This happens due to the fact that there's a _window extension_ for rolling forward.
-- Grab; if you input A exactly in the frame you intended to start up the shield, you grab instead.
 
-Other actions that have a higher priority than your shield start-up<sup> [ref][buffer]</sup>:
+Other actions that have a higher priority than your shield start-up:<sup> [ref][buffer]</sup>
 
 - Special moves
 - Smash attacks with the C-stick
+- Smash turn from Dash
+- `Squat` from `RunBrake`
 
-Frames that are actionable overall but not shield-actionable<sup> [ref][buffer]</sup>:
+Frames that are not considered as lag, but you can't start up your shield during them:<sup> [ref][buffer]</sup>
 
 - Fourth frame of dash forward.
 
@@ -107,13 +115,13 @@ There's no buffer for A to grab.
 
 If you hold A before a grab is possible, you can't execute that grab with your controller, until you let go of A.
 
-We call this buffering A, as opposed to buffering grab which is not possible.
+We call this 'buffering A', as opposed to buffering grab which is not possible.
 
 #### Two ways to buffer A
 
 There's obviously an A button in your controller. We can call this the physical A button.
 
-Pressing or holding Z is the same as pressing or holding [Shield + "Virtual A"], or that is what i call the other type of A.
+Pressing or holding Z is the same as pressing or holding Shield + "Virtual A"… or that is what we can call the 'A' part of the Z macro.
 
 Holding the physical A or the "virtual A", before a grab is possible, makes it so that you can't grab until you let go of _both_ buttons. 
 
@@ -140,22 +148,22 @@ What changes shield health?
 
 The shield shrinks as it loses health.
 
-Another factor that determines the shield size is the shield strength at the moment. Sizes are bigger in _less strong_ shields.
+Another factor that determines the shield size is the shield strength at the current moment. Shield sizes are bigger as the shields get _less strong_.
 
 What does shield strength do, upon hit
 --------------------------------------
 
-When you block an attack that inflicts shieldstun, your shield loses health.
+When you block an attack that inflicts shieldstun, your shield loses health first.
 
 These effects also apply:
 
-- You enter hitlag and then shieldstun. Your shield bubble protects you.
 - Your character gets pushed from the hit (pushback)
 - If you were hit by the attacker and not by a projectile, the attacker also gets pushed (attacker pushback), but not if the attacker is airborne.
+- You enter hitlag and then shieldstun. Your shield bubble protects you.
 
-All of these effects' magnitudes increase with the hitbox's damage had-it-connected with a player hurtbox.<sup> [ref][shieldstun is universal]</sup>
+All of these effects' magnitudes increase with the hitbox's damage had-it-connected with a player hurtbox.<sup>[ ref][shieldstun is universal]</sup>
 
-They are not increased by the hitbox's damage _on block_ which is sometimes different (as in Marth's Shield Breaker.)<sup> [ref][shieldstun is universal]</sup>
+They are not increased by the hitbox's damage _on block_ which is sometimes different (as in Marth's Shield Breaker.)<sup>[ ref][shieldstun is universal]</sup>
 
 Shield strength changes the magnitude of these effects. Receiving a hit on a strong shield has these properties:
 
@@ -171,9 +179,9 @@ Receiving a hit on a low strength shield has these properties:
 - more pushback that you receive,
 - less attacker pushback.
 
-The pushback that you receive has a cap.<sup> [ref][wiki shield pushback]</sup> To illustrate its magnitude: try shielding some attack that can deal 32.5 damage; an attack that deals close to this amount of damage is Bowser's fully charged f-smash. When you shield it, the resulting pushback is the maximum pushback possible, and is always the same no matter your shield's properties.
+The pushback that you receive has a cap.<sup>[ ref][wiki shield pushback]</sup> To illustrate its magnitude: try shielding some attack that can deal 32.5 damage; an attack that deals close to this amount of damage is Bowser's fully charged f-smash. When you shield it, the resulting pushback is the maximum pushback possible, and is always the same no matter what are your shield's properties.
 
-Unlike shield pushback, the attacker pushback magnitude doesn't have an upper limit.<sup> [ref][wiki shield pushback]</sup>
+Unlike shield pushback, the attacker pushback magnitude doesn't have an upper limit.<sup> [ref][wiki shield pushback]</sup> Notably, this makes possible the 'kamikaze glitch'.
 
 Shield strength number
 ----------------------
@@ -190,7 +198,7 @@ We review all the ways that the controller inputs shield.
 
 1. Trigger analog
 2. Trigger digital
-3. Z if grab is locked out
+3. Z if grab is locked out (you buffer A)
 
 One way all of these input methods are different is in their manipulation of the shield strength.
 
@@ -232,7 +240,7 @@ How to get the `GuardOn`/` ` animation on the first frame of shielding
 
 Buffered shields start up in the `GuardOn`/` ` animation. Any buffered<sub>(hold)</sub> shield input method, alone or in combination, results in a `GuardOn`/` ` startup shield.
 
-To get a `GuardOn`/` ` shield startup without having to buffer the input, avoid using unbuffered trigger digital inputs, just use one or a combination of the following input methods:
+To get a `GuardOn`/` ` shield startup _without_ having to buffer the input, avoid using unbuffered trigger digital inputs, just use one or a combination of the following input methods:
 
 - Shoulder trigger sliders (trigger analog)
 - Z shield
@@ -240,7 +248,7 @@ To get a `GuardOn`/` ` shield startup without having to buffer the input, avoid 
 How to get the `GuardReflect`/` ` animation on the first frame of shielding
 ---------------------------------------------------------------------------
 
-Avoid the buffered shield.
+To get the `GuardReflect`/` ` animation You must avoid the buffered shield.
 
 To start up a shield with `GuardReflect`/` `, press any of the trigger digitals alone or in combination to other means of shield strength input.
 
@@ -396,7 +404,7 @@ The count goes down by 1 every frame where `Guard`/` ` is your _intended state_ 
 Animation timelines
 -------------------
 
-To understand how and when these points are applied on your frame analysis, you may read Appendix B first.
+To understand how and when you can apply these points in your frame-by-frame analysis, you may read Appendix B first.
 
 ### Shield startup
 
@@ -409,14 +417,14 @@ Variant animations for this action:
 
 ##### Frame 1 of `GuardOn`/` `
 
-Unique tasks
+Tasks unique to this animation
 
 - Set the initial shield strength
 - Spawn physical shield bubble hitbox
 	- Size: 1x initial shield size
 - Powershield counter = 0
 
-Common tasks
+Tasks common to all startup animations
 
 - Autoshield counter = 8
 - Powershield cancel counter = 0
@@ -426,7 +434,7 @@ Common tasks
 
 Available animations (ranked from highest priority to lowest)
 
-- `GuardReflect`/` ` (input: timing a trigger digital press on this frame)
+- `GuardReflect`/` ` (condition: your shield was not buffered) (input: timing a trigger digital press on this frame)
 - Spotdodge
 - Roll
 - Jump
@@ -467,7 +475,7 @@ Available animations (ranked from highest priority to lowest)
 
 ##### Frame 1 of `GuardReflect`/` `
 
-Unique tasks
+Tasks unique to this animation
 
 - Set the initial shield strength
 - Spawn physical shield bubble hitbox
@@ -476,7 +484,7 @@ Unique tasks
 - Spawn reflect bubble hitbox
 	- Size: 0.75x initial shield size
 
-Common tasks
+Tasks common to all startup animations
 
 - Autoshield counter = 8
 - Powershield cancel counter = 0
@@ -572,10 +580,7 @@ Tasks:
 
 ##### On `GuardSetOff`/`GuardDamage` animation end ( : after shieldstun)
 
-Available animations (ranked from highest priority to lowest)
-
-
-Available animations (starting from highest priority and ending on middle high priority) on the condition: buffered autorelease, and, at the same time, powershield cancel counter > 0 
+Available animations (ranging from highest priority and ending on middle high priority) **on the condition:** buffered autorelease, and, at the same time, powershield cancel counter > 0 
 
 - Special moves
 - Grab
@@ -604,8 +609,8 @@ Tasks
 Tasks
 
 - Shield snaps to control stick tilt
-- Begin the shield strength input queue
-- As long as the autoshield counter > 0, keep checking to see if the player buffers<sub>(timed)</sub> autorelease
+- Make every shield strength input  wait 1 frame inside a queue
+- As long as the autoshield counter > 0, keep checking to see if the player buffers<sub>(timed)</sub> an autorelease
 
 ##### Frame 2 of `Guard`/` ` after shieldstun
 
@@ -620,7 +625,7 @@ Available animations (ranked from highest priority to lowest)
 
 Tasks
 
-- From this frame onwards, apply the shield strengths that were inputted in the queue (First-in-first-out)
+- From this frame onwards, constantly update the shield strength using the inputs that were stored in the queue for 1 frame
 
 ### `GuardOff`/`GuardOff`
 
@@ -691,7 +696,7 @@ Appendix B - Frame flowchart
 	- If _No_:
 		1. _Intended animation_ = Final animation. If spending a frame in your final animation depletes some counter, here you substract 1 from the count.
 	- If _Yes, and the hit inflicts hitstun/shieldstun_:
-		1. Your state and animation change to one of the damage/knockback/tumble family.
+		1. Your state and animation change to one of the damage/knockback/tumble family; this will be your final state and final animation.
 		2. Do the actions indicated for the first frame of your final animation
 7. End, Show frame
 
@@ -699,21 +704,23 @@ Appendix B - Frame flowchart
 
 If you're on frames 2 - next-to-final of hitlag
 
-1. SDI [if applicable][phantom hits sdi]
-2. Check if your shield is hit or your hurtbox is hit
+1. Start
+2. Read inputs
+3. SDI [if applicable][phantom hits sdi]
+4. Check if your shield is hit or your hurtbox is hit
 	- Does the hit inflict hitstun/shieldstun? _Yes_
 
 	1. Your state and animation change to one of the damage/knockback/tumble family.
 	2. Do the actions indicated for the first frame of your final animation
 	3. Enter hitlag from the beginning, again
-3. Show Frame
+5. End, Show Frame
 
 #### Frame flowchart (final frame of hitlag) (also: hitstun/shieldstun)
 
 1. Start
 2. Read inputs
-3. The current damage/knockback/tumble state is the _intended state_. Its animation is the _intended animation_.
-4. Apply steps 4 onwards of "Frame flowchart (normal)"
+3. The current damage/knockback/tumble state is the _intended state_. Its animation is the _intended animation_
+4. Apply steps 4 onwards of ["Frame flowchart (normal)"](#frame-flowchart-normal)
 
 
 Work in Progress
@@ -721,7 +728,16 @@ Work in Progress
 
 ##### Miscellaneous
 
-If the shield gets hit with a physical attack that doesn't inflict shieldstun (Jigglypuff up-b: Sing) while the powershield counter still has a value of 1 or more, powershield visuals play but your character doesn't enter `GuardSetOff`/`GuardDamage`.<sup> [ref][heart powershielding op]</sup>
+- If the shield gets hit with a physical attack that doesn't inflict shieldstun (Jigglypuff up-b: Sing) while the powershield counter still has a value of 1 or more, powershield visuals play but your character doesn't enter `GuardSetOff`/`GuardDamage`.<sup> [ref][heart powershielding op]</sup>
+
+- PracticalTAS helped by coining the term _intended state_. He was prompted to, by the question:
+    > I've seen that the character obeys my controller input first, entering a temporary character state, and then the game determines if my char gets hit and sends it into a damage state.
+    >
+    > Of course I can use my controller input to shield before getting hit in the same frame (this sends me into `GuardDamage`). Or I can release shield, to get hit in the same frame and be sent into tumble or some other dmg state, instead of `GuardOff`. 
+    >
+    > What is the name for this state that answers to my controller input but can be changed by a hit before next frame?
+
+He noted that it was too late to name it because we're not even close to being the first to study the _intended state_.
 
 References used, Additional reading
 ===================================

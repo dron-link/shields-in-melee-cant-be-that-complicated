@@ -1,5 +1,5 @@
 
-The Tree of Shield Mechanics (v1.1.2 from 28 March 2025)
+The Tree of Shield Mechanics (v1.1.3 from 28 March 2025)
 ========================================================
 
 `  In Memory Of: Hax$  `
@@ -39,7 +39,7 @@ Table of contents
     - [Strength input conflict-solving](#strength-input-conflict-solving)
 - [Initial strength of the shield](#initial-strength-of-the-shield)
 - [Animations and their associated state](#animations-and-their-associated-state)
-- [How to get the `GuardOn`/`` animation on the first frame of shielding](#how-to-get-the-guardon--animation-on-the-first-frame-of-shielding)
+- [How to get the `GuardOn`/` ` animation on the first frame of shielding](#how-to-get-the-guardon--animation-on-the-first-frame-of-shielding)
 - [How to get the `GuardReflect`/` ` animation on the first frame of shielding](#how-to-get-the-guardreflect--animation-on-the-first-frame-of-shielding)
 - [Changing the shield strength](#changing-the-shield-strength)
 - [The `GuardSetOff`/`GuardDamage` animation](#the-guardsetoffguarddamage-animation)
@@ -61,8 +61,8 @@ Table of contents
     - [`GuardOn`/` `](#guardon-)
     - [`GuardReflect`/` `](#guardreflect-)
     - [`GuardSetOff`/`GuardDamage`](#guardsetoffguarddamage)
-    - [`Guard`/`_` after the complete shield startup animation](#guard--after-the-complete-shield-startup-animation)
-    - [`Guard`/`_` after shieldstun](#guard--after-shieldstun)
+    - [`Guard`/` ` after the complete shield startup animation](#guard--after-the-complete-shield-startup-animation)
+    - [`Guard`/` ` after shieldstun](#guard--after-shieldstun)
     - [`GuardOff`/`GuardOff`](#guardoffguardoff)
 - [Appendix](#appendix)
     - [Appendix A - Types of inputs by buffer](#appendix-a---types-of-inputs-by-buffer)
@@ -73,6 +73,7 @@ Table of contents
 The basic way(s) to input a shield
 ----------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 The usual method to input shield is by pressing a shoulder trigger.
 
 A shoulder trigger consists of two parts that are able to input a shield:
@@ -83,6 +84,8 @@ A shoulder trigger consists of two parts that are able to input a shield:
 In-game: starting up the shield
 -------------------------------
 
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 To start up a shield, you have to input shield during an actionable state, or buffer<sub>(hold)</sub> shield until reaching an actionable frame. 
 
 Your character will start up its shield instantaneously, if it is actionable, or when it becomes actionable.
@@ -111,6 +114,7 @@ Frames that are not considered as lag, but you can't start up your shield during
 Buffering A
 -----------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 There's no buffer for A to grab.
 
 If you hold A before a grab is possible, you can't execute that grab with your controller, until you let go of A.
@@ -129,6 +133,8 @@ By buffering A in this way, you prevent grab, and this enables you to start-up a
 
 Elements of shield
 ------------------
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 - Health
 - Strength
@@ -153,6 +159,7 @@ Another factor that determines the shield size is the shield strength at the cur
 What does shield strength do, upon hit
 --------------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 When you block an attack that inflicts shieldstun, your shield loses health first.
 
 These effects also apply:
@@ -186,6 +193,7 @@ Unlike shield pushback, the attacker pushback magnitude doesn't have an upper li
 Shield strength number
 ----------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 The strength of a shield ranges from 0.30714 (=43/140) to 1.000 (=140/140).<sup> [ref][wiki shield analog shield data (Melee only)]</sup>
 
 We call the strongest shield **hard shield**, and all other shields are labeled **lightshields**. The smallest value (~0.307) is the weakest possible of the shields.
@@ -194,6 +202,7 @@ We call the strongest shield **hard shield**, and all other shields are labeled 
 Input of the shield strength
 ----------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 We review all the ways that the controller inputs shield.
 
 1. Trigger analog
@@ -218,10 +227,13 @@ You can input shield by mixing input methods in any combination, over the course
 Initial strength of the shield
 ------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 The shield strength in the first couple or so of frames of shielding, also called initial strength, is decided by the shield strength input that has the most priority at the exact moment you start up your shield.
 
 Animations and their associated state
 -------------------------------------
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 - `Guard`/` `
 
@@ -238,6 +250,7 @@ The shield action can only be one of the following two animations during the sta
 How to get the `GuardOn`/` ` animation on the first frame of shielding
 ----------------------------------------------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Buffered shields start up in the `GuardOn`/` ` animation. Any buffered<sub>(hold)</sub> shield input method, alone or in combination, results in a `GuardOn`/` ` startup shield.
 
 To get a `GuardOn`/` ` shield startup _without_ having to buffer the input, avoid using unbuffered trigger digital inputs, just use one or a combination of the following input methods:
@@ -248,6 +261,7 @@ To get a `GuardOn`/` ` shield startup _without_ having to buffer the input, avoi
 How to get the `GuardReflect`/` ` animation on the first frame of shielding
 ---------------------------------------------------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 To get the `GuardReflect`/` ` animation You must avoid the buffered shield.
 
 To start up a shield with `GuardReflect`/` `, press any of the trigger digitals alone or in combination to other means of shield strength input.
@@ -255,6 +269,7 @@ To start up a shield with `GuardReflect`/` `, press any of the trigger digitals 
 Changing the shield strength
 ----------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 At some point after entering a shield startup animation (or entering the `Guard`/` ` animation after shieldstun), you become able to freely adjust your shield strength frame by frame. You can adjust your shield size even right before the sub-frame your shields are hit. But there are minor quirks with how this works:
 
 - The shield in frame 3 gets assigned the strength that was inputted on frame 2,
@@ -268,6 +283,7 @@ Another way to see it is, the game looks up your inputs _a frame into the past_ 
 The `GuardSetOff`/`GuardDamage` animation
 -----------------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 When your physical shield bubble hurtbox gets hit with an attack or a projectile that deals shieldstun, you're forced into the `GuardSetOff`/`GuardDamage` animation. It's an animation that you get locked into during your hitlag frames and your shieldstun frames.
 
 _More details:_ `GuardSetOff`/`GuardDamage` is the final animation in the frame you get hit, but it is never the _intended animation_ in that frame (see appendix B), unless the hit occurred while you were still in hitlag or shieldstun from a previous hit.
@@ -275,6 +291,7 @@ _More details:_ `GuardSetOff`/`GuardDamage` is the final animation in the frame 
 Powershield effect in the physical shield bubble hitbox
 -------------------------------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Hits from the attacker (but not projectiles) are powershielded when they come into contact with your with physical shield bubble hitbox, for as long as your _powershield counter_ hasn't run out.
 
 The powershield visuals involve light rays coming from the contact point of the hit.
@@ -303,6 +320,7 @@ The powershield counter doesn't decrease in the `Guard`/` ` state. This causes t
 Projectile on the physical shield bubble hitbox
 -----------------------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 If your physical shield bubble hitbox comes into contact with an enemy projectile hitbox, the projectile can be stopped, disappear, or be launched at an upward angle if it hits close enough to the top of your shield bubble. 
 
 You suffer hitlag, shieldstun and pushback from physically shielding projectiles.
@@ -312,6 +330,7 @@ Physical _powershielding_ of a projectile doesn't exist: it's only possible to s
 Reflect hitbox
 --------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 The reflect hitbox size is only 75% as large as a physical shield bubble hitbox created under the same health & input strength conditions.
 
 It can only interact with hitboxes of projectiles that you didn't shoot/throw yourself.
@@ -343,6 +362,7 @@ A projectile that deals more than 60% of damage cannot be reflected. Upon contac
 Autoshield
 ----------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Autoshield is a condition that lets you hold up your shield without any shield input necessary from your controller. On the flipside, autoshield makes you unable to easily `GuardOff`/`GuardOff`.
 
 Specifically, autoshield completely prevents you from going from `Guard`/` `, `GuardOn`/` `, or `GuardReflect`/` `, into `GuardOff`/`GuardOff` by letting go of all shield inputs. It also impedes going from `GuardSetOff`/`GuardDamage` into `GuardOff`/`GuardOff` unless you have buffered<sub>(timed)</sub> _autorelease_.
@@ -362,6 +382,7 @@ This count decreases by 1 every frame where the animations `GuardReflect`/` `, `
 Autorelease
 -----------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Autorelease is an input that puts your character in `GuardOff`/`GuardOff` as soon as it becomes possible. 
 
 To autorelease, all you need to do is letting go of all your shield inputs while in the `GuardOn`/` `, `Guard`/` `, or `GuardReflect`/` ` _intended animations_, and before your autoshield counter has depleted. 
@@ -373,13 +394,14 @@ _More details:_ autorelease is an input of the buffer<sub>(timed)</sub> type. Yo
 Inputting the `GuardOff`/`GuardOff` animation
 ---------------------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 There are four scenarios where you can `GuardOff`/`GuardOff`. 
 
 ##### Without autorelease
 
-When not in hitlag or shieldstun, and if autoshield expired (autoshield counter = 0), you can `GuardOff`/`GuardOff` by letting go of shield. `GuardOff`/`GuardOff` occurs in that frame you let go of all shield inputs.
+1. When not in hitlag or shieldstun, and if autoshield expired (autoshield counter = 0), you can `GuardOff`/`GuardOff` by letting go of shield. `GuardOff`/`GuardOff` occurs in that frame you let go of all shield inputs.
 
-When in the `GuardSetOff`/`GuardDamage` animation (meaning you're under hitlag or shieldstun), and if the autoshield counter = 0, you can buffer<sub>(hold)</sub> shield release by letting go of all shield inputs, though you still can shield out of `GuardSetOff`/`GuardDamage` if you input shield again.
+2. When in the `GuardSetOff`/`GuardDamage` animation (meaning you're under hitlag or shieldstun), and if the autoshield counter = 0, you can buffer<sub>(hold)</sub> shield release by letting go of all shield inputs, though you still can shield out of `GuardSetOff`/`GuardDamage` if you input shield again.
 
 ##### With autorelease
 
@@ -391,6 +413,7 @@ If you buffered<sub>(timed)</sub> autorelease,
 Powershield cancel
 ------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Powershield cancel is when you abruptly get out of the shield release animation (`GuardOff`/`GuardOff`) by inputting any attack, special move, or grab.
 
 A condition to do this is that you must first physically powershield an attack; after that, you have to enter `GuardOff`/`GuardOff` before your _powershield cancel counter_ runs out.
@@ -404,16 +427,20 @@ The count goes down by 1 every frame where `Guard`/` ` is your _intended state_ 
 Animation timelines
 -------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 To understand how and when you can apply these points in your frame-by-frame analysis, you may read Appendix B first.
 
 ### Shield startup
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Variant animations for this action:
 
 - `GuardOn`/` `
 - `GuardReflect`/` `
 
 ### `GuardOn`/` `
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 ##### Frame 1 of `GuardOn`/` `
 
@@ -472,6 +499,8 @@ Available animations (ranked from highest priority to lowest)
 
 
 ### `GuardReflect`/` `
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 ##### Frame 1 of `GuardReflect`/` `
 
@@ -543,6 +572,8 @@ Available animations (ranked from highest priority to lowest)
 
 ### `GuardSetOff`/`GuardDamage`
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
+
 ##### Hitlag frame 1 of `GuardSetOff`/`GuardDamage`
 
 Available animations
@@ -580,29 +611,29 @@ Tasks:
 
 ##### On `GuardSetOff`/`GuardDamage` animation end ( : after shieldstun)
 
-Available animations (ranging from highest priority and ending on middle high priority) **on the condition:** buffered autorelease, and, at the same time, powershield cancel counter > 0 
+Available animations (ranked from high priority to low priority)
 
-- Special moves
+- Special moves (condition: powershield cancel counter > 0) (input: buffer autorelease)
+- C-stick smash attacks (condition: powershield cancel counter > 0) (input: buffer autorelease)
+- Normals and smashes (condition: powershield cancel counter > 0) (input: buffer autorelease)
+- Roll
+- Spotdodge
+- Jump
+- `GuardOff`/`GuardOff`
 - Grab
-- C-stick smash attacks
-- Normals and smashes
-
-More available animations (starting from middle low priority and ending on lowest priority)
-
-- Spotdodge (condition: buffered autorelease)
-- Jump (condition: buffered autorelease)
-- `GuardOff`/`GuardOff` (condition: buffered autorelease)
 - `Guard`/` `
-- `GuardOff`/`GuardOff` (condition: autoshield counter = 0)
 
 ### `Guard`/` ` after the complete shield startup animation
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Tasks
 
-- Ongoing processes from previous animation
+- Inherit all properties and continue all processes as planned
 
 
 ### `Guard`/` ` after shieldstun
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 ##### Frame 1 of `Guard`/` ` after shieldstun
 
@@ -628,6 +659,8 @@ Tasks
 - From this frame onwards, constantly update the shield strength using the inputs that were stored in the queue for 1 frame
 
 ### `GuardOff`/`GuardOff`
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 ##### Frame 1 of `GuardOff`/`GuardOff`
 
@@ -670,6 +703,7 @@ APPENDIX
 Appendix A - Types of inputs by buffer
 --------------------------------------
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Based on the post: [Buffer Mechanics in Melee - Smashboards][buffer]
 
 Buffer: mechanic that lets you "successfully input actions before they can actually be executed, causing the inputs to be carried out the first frame possible" — <cite>SmashWiki</cite>
@@ -684,6 +718,8 @@ In all cases, your action — buffered or not — will _not_ execute if there's 
 
 Appendix B - Frame flowchart
 ----------------------------
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 #### Frame flowchart (normal)
 
@@ -728,6 +764,8 @@ Work in Progress
 
 ##### Miscellaneous
 
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
+
 - If the shield gets hit with a physical attack that doesn't inflict shieldstun (Jigglypuff up-b: Sing) while the powershield counter still has a value of 1 or more, powershield visuals play but your character doesn't enter `GuardSetOff`/`GuardDamage`.<sup> [ref][heart powershielding op]</sup>
 
 - PracticalTAS helped by coining the term _intended state_. He was prompted to, by the question:
@@ -741,6 +779,8 @@ He noted that it was too late to name it because we're not even close to being t
 
 References used, Additional reading
 ===================================
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 - [Buffer Mechanics in Melee - Smashboards][buffer]
 - [Magus420's Some stuff - Balance Patch - Smashboards][shieldstun is universal]

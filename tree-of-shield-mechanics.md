@@ -1,5 +1,5 @@
 
-The Tree of Shield Mechanics (v1.1.1 from 28 March 2025)
+The Tree of Shield Mechanics (v1.1.2 from 28 March 2025)
 ========================================================
 
 `  In Memory Of: Hax$  `
@@ -29,7 +29,7 @@ Table of contents
 
 - [Table of Contents](#table-of-contents)
 - [The basic way(s) to input a shield](#the-basic-ways-to-input-a-shield)
-- [[In-game: starting up the shield](#in-game--starting-up-the-shield)](#in-game-starting-up-the-shield)
+- [In-game: starting up the shield](#in-game-starting-up-the-shield)
 - [Buffering A](#buffering-a)
     - [Two ways to buffer A](#two-ways-to-buffer-a)
 - [Elements of shield](#elements-of-shield)

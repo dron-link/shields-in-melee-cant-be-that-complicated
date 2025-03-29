@@ -1,14 +1,14 @@
 
-The Tree of Shield Mechanics (v1.1.3 from 28 March 2025)
+The Tree of Shield Mechanics (v1.1.4 from 29 March 2025)
 ========================================================
 
 `  In Memory Of: Hax$  `
 
 ##### Thanks
 
-Deep Blue C.
+- Deep Blue C.
 
-PracticalTAS
+- PracticalTAS
 
 ##### Credits
 
@@ -18,11 +18,11 @@ Writer: dron-link
 
 Contributions: PracticalTAS, Deep Blue C.
 
-##### How reliable is the information contained here
+##### Disclaimers
 
-My original input is based on what I gleaned from simple frame-by-frame planned interactions in TrainingMode-CommunityEdition's Training Lab; the rest of the information contained here was sourced from the work of experts in the field; the fraction that I managed to find while putting together this document. I'm privy of the niche research carried by them, and you may find mistakes and inconsistency in this content because my research procedure isn't as polished as theirs.
+How reliable is the information contained here? _My original input is based on what I gleaned from simple frame-by-frame planned interactions in TrainingMode - Community Edition iso's Lab. The rest of the information contained here was sourced from the work of experts in the field, or at least the fraction that I managed to find while putting together this document. I'm _not privy_ of all of their previous research on topics I touch here, and as a result, you may find mistakes in the information presented here because my research procedures aren't as polished and controlled as theirs._
 
-None of the following information was gathered with Yoshi's unique shield in mind.
+What about Yoshi's shielding mechanics? _None of the following information was gathered with Yoshi's unique shield in mind._
 
 Table of contents
 -----------------
@@ -67,6 +67,7 @@ Table of contents
 - [Appendix](#appendix)
     - [Appendix A - Types of inputs by buffer](#appendix-a---types-of-inputs-by-buffer)
     - [Appendix B - Frame flowchart](#appendix-b---frame-flowchart)
+    - [Appendix C - Instrument and results of investigation on the actions after `GuardSetOff`/`GuardDamage`](#appendix-c---instrument-and-results-of-investigation-on-the-actions-after-guardsetoffguarddamage)
 - [Work in Progress](#work-in-progress)
 - [References used, Additional reading](#references-used-additional-reading)
 
@@ -407,7 +408,7 @@ There are four scenarios where you can `GuardOff`/`GuardOff`.
 
 If you buffered<sub>(timed)</sub> autorelease,
 
-- it makes your character `GuardOff`/`GuardOff` immediately after `GuardSetOff`/`GuardDamage` shieldstun finishes; but certain other actions are still accessible: see the relevant section.
+- it makes your character `GuardOff`/`GuardOff` immediately after `GuardSetOff`/`GuardDamage` shieldstun finishes; but certain other actions are still accessible: see the section on what happens after `GuardSetOff`/`GuardDamage` ends.
 - if you're still shielding with `Guard`/` `, `GuardOn`/` `, or `GuardReflect`/` ` and you reach the frame where the autoshield counter depletes, you will `GuardOff`/`GuardOff`.
 
 Powershield cancel
@@ -611,24 +612,40 @@ Tasks:
 
 ##### On `GuardSetOff`/`GuardDamage` animation end ( : after shieldstun)
 
-Available animations (ranked from high priority to low priority)
+Available animations if autoshield counter > 0, and you have input autorelease (ranked from highest priority to lowerst)
 
-- Special moves (condition: powershield cancel counter > 0) (input: buffer autorelease)
-- C-stick smash attacks (condition: powershield cancel counter > 0) (input: buffer autorelease)
-- Normals and smashes (condition: powershield cancel counter > 0) (input: buffer autorelease)
-- Roll
 - Spotdodge
 - Jump
 - `GuardOff`/`GuardOff`
+
+Available animations if autoshield counter = 0, and you have input autorelease** (ranked from highest priority to lowest)
+
+- Specials
 - Grab
+- Smash attacks with the C-stick
+- A-button moves
+- Spotdodge
+- Jump
+- `GuardOff`/`GuardOff`
+
+** <sup>Under these conditions, this frame always has a 'powershield cancel counter' value of 4. Proof is left to the reader.</sup>
+
+Available animations if you didn't input an autorelease (ranked from highest priority to lowest)
+
+- `GuardOff`/`GuardOff` (condition: autoshield counter = 0)
+- Spotdodge
+- Roll
+- Grab
+- Jump
 - `Guard`/` `
+
 
 ### `Guard`/` ` after the complete shield startup animation
 
 <sup>[Back to Table of Contents](#table-of-contents)</sup>\
 Tasks
 
-- Inherit all properties and continue all processes as planned
+- Inherit all properties and continue all processes as normal
 
 
 ### `Guard`/` ` after shieldstun
@@ -650,8 +667,8 @@ Available animations (ranked from highest priority to lowest)
 - `GuardOff`/`GuardOff` (condition: autoshield counter = 0)
 - Spotdodge
 - Roll
-- Jump
 - Grab
+- Jump
 - `Guard`/` ` (continue)
 
 Tasks
@@ -745,7 +762,6 @@ If you're on frames 2 - next-to-final of hitlag
 3. SDI [if applicable][phantom hits sdi]
 4. Check if your shield is hit or your hurtbox is hit
 	- Does the hit inflict hitstun/shieldstun? _Yes_
-
 	1. Your state and animation change to one of the damage/knockback/tumble family.
 	2. Do the actions indicated for the first frame of your final animation
 	3. Enter hitlag from the beginning, again
@@ -757,6 +773,125 @@ If you're on frames 2 - next-to-final of hitlag
 2. Read inputs
 3. The current damage/knockback/tumble state is the _intended state_. Its animation is the _intended animation_
 4. Apply steps 4 onwards of ["Frame flowchart (normal)"](#frame-flowchart-normal)
+
+Appendix C - Instrument and results of investigation on the actions after `GuardSetOff`/`GuardDamage`
+-----------------------------------------------------------------------------------------------------
+
+<sup>[Back to Table of Contents](#table-of-contents)</sup>
+
+#### Instrument used
+
+Frame where the character blocks, shield with which the character blocks, and whether the input of the action that we want to execute that frame gets coupled with a shield input or not.
+
++ Frame 1 lightshield endingWithShieldInput:
++ Frame 1 lightshield noShieldInput:
++ Frame 2 lightshield endingWithShieldInput:
++ Frame 2 lightshield noShieldInput:
++ Frame 2 lightshield autorelease endingWithShieldInput:
++ Frame 2 lightshield autorelease noShieldInput:
++ Frame 1 powershield endingWithShieldInput:
++ Frame 1 powershield noShieldInput:
++ Frame 2 powershield endingWithShieldInput:
++ Frame 2 powershield noShieldInput:
++ Frame 2 powershield autorelease endingWithShieldInput:
++ Frame 2 powershield autorelease noShieldInput:
++ Frame 5 shield endingWithShieldInput:
++ Frame 5 shield noShieldInput:
++ Frame 5 shield autorelease endingWithShieldInput:
++ Frame 5 shield autorelease noShieldInput:
++ Frame 9 shield endingWithShieldInput:
++ Frame 9 shield noShieldInput:
+
+#### Results
+
+###### jump availability
+
++ frame 1 ls oos: yes
++ frame 1 ls jumponly: yes
++ frame 2 ls oos: yes
++ frame 2 ls jumponly: yes
++ frame 2 ls autorelease oos: yes
++ frame 2 ls autorelease jumponly: yes
++ frame 1 ps oos: yes
++ frame 1 ps jumponly: no 
++ frame 2 ps oos: yes
++ frame 2 ps jumponly: no
++ frame 2 ps autorelease oos: yes 
++ frame 2 ps autorelease jumponly: yes
++ frame 5 oos: yes
++ frame 5 jumponly: yes
++ frame 5 autorelease oos: yes
++ frame 5 autorelease jumponly: yes
++ frame 9 oos: yes
++ frame 9 jumponly: no
+
+###### grab availability
+
+Grab = Z = Shield + A. So grab attempts always incur in a shield input (endingWithShieldInput).
+
++ frame 1 ls: y
++ frame 2 ls: y
++ frame 2 ls autorelease: n
++ frame 1 ps: y
++ frame 2 ps: y
++ frame 2 ps autorelease: y
++ frame 5: y
++ frame 5 autorelease: n
++ frame 9: y
+
+###### spotdodge availability
+
++ frame 1 ls combo: y
++ frame 1 ls stickonly: y
++ frame 2 ls combo: y
++ frame 2 ls stickonly: y
++ frame 2 ls autorelease combo: y
++ frame 2 ls autorelease stickonly: y
++ frame 1 ps combo: y
++ frame 1 ps stickonly: n
++ frame 2 ps combo: y
++ frame 2 ps stickonly: n
++ frame 2 ps autorelease combo: y
++ frame 2 ps autorelease stickonly: y
++ frame 5 combo: y
++ frame 5 stickonly: y
++ frame 5 autorelease combo: y
++ frame 5 autorelease stickonly: y
++ frame 9 combo: y
++ frame 9 stickonly: n
+
+###### roll availability
+
++ frame 1 ls combo: y
++ frame 1 ls stickonly: y
++ frame 2 ls combo: y
++ frame 2 ls stickonly: y
++ frame 2 ls autorelease combo: n
++ frame 2 ls autorelease stickonly: n 
++ frame 1 ps combo: y
++ frame 1 ps stickonly: n  
++ frame 2 ps combo: y
++ frame 2 ps stickonly: n 
++ frame 2 ps autorelease combo: n
++ frame 2 ps autorelease stickonly: n
++ frame 5 combo: y
++ frame 5 stickonly: y 
++ frame 5 autorelease combo: n
++ frame 5 autorelease stickonly: n 
++ frame 9 combo: y
++ frame 9 stickonly: n 
+
+###### grounded b move availability
+
+Only possible scenarios are after powershielding a physical hit.
+
++ frame 1 ps holdshield: n
++ frame 1 ps letgo: n
++ frame 2 ps holdshield: n
++ frame 2 ps letgo: n
++ frame 2 ps autorelease holdshield: y 
++ frame 2 ps autorelease letgo: y
+
 
 
 Work in Progress
@@ -783,7 +918,7 @@ References used, Additional reading
 <sup>[Back to Table of Contents](#table-of-contents)</sup>
 
 - [Buffer Mechanics in Melee - Smashboards][buffer]
-- [Magus420's Some stuff - Balance Patch - Smashboards][shieldstun is universal]
+- [(Magus420) "Some stuff" - Balance Patch - Smashboards][shieldstun is universal]
 - [Phantom Hits + DI = ? - SmashBoards][phantom hits sdi]
 - [Shield - SmashWiki, the Super Smash Bros. wiki](https://www.ssbwiki.com/Shield)
 - [Heart Shield (Powershield Storing): r/SSBM][heart powershielding op]
